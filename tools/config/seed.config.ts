@@ -177,13 +177,13 @@ export class SeedConfig {
    * `index.html`.
    * @type {string}
    */
-  APP_TITLE = 'Welcome to angular2-seed!';
+  APP_TITLE = 'Welcome to angular-seed-hybrid!';
 
   /**
    * The base folder of the applications source files.
    * @type {string}
    */
-  APP_SRC = `src/${this.APP_CLIENT}`;
+  APP_SRC = (argv['src'] || `src`) + `/${this.APP_CLIENT}`;
 
   /**
    * The folder of the applications asset files.
@@ -218,19 +218,19 @@ export class SeedConfig {
    * The base folder for built files.
    * @type {string}
    */
-  DIST_DIR = 'dist';
+  DIST_DIR = (argv['dist'] || 'dist');
 
   /**
    * The folder for built files in the `dev` environment.
    * @type {string}
    */
-  DEV_DEST = `${this.DIST_DIR}/dev`;
+  DEV_DEST = `${this.DIST_DIR}/` + (argv['dev_dest'] || `dev`);
 
   /**
    * The folder for the built files in the `prod` environment.
    * @type {string}
    */
-  PROD_DEST = `${this.DIST_DIR}/prod`;
+  PROD_DEST = `${this.DIST_DIR}/` + (argv['prod_dest'] || `prod`);
 
   /**
    * The folder for temporary files.

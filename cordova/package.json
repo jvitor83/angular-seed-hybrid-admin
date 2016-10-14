@@ -1,0 +1,16 @@
+{
+  "name": "angular-seed-hybrid",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf platforms node_modules lib hooks"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/systemjs": "^0.19.31",
+    "cordova": "^6.3.1"
+  }
+}
