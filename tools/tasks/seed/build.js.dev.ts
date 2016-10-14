@@ -5,6 +5,10 @@ import * as merge from 'merge-stream';
 import * as util from 'gulp-util';
 import { join/*, sep, relative*/ } from 'path';
 
+import * as vfs from 'vinyl-fs';
+const vfsOptions = <any>{ strict: false, allowEmpty: true, follow: true, followSymlinks: true };
+
+
 import Config from '../../config';
 import { makeTsProject, templateLocals } from '../../utils';
 import { TypeScriptTask } from '../typescript_task';
@@ -23,9 +27,9 @@ export =
   class BuildJsDev extends TypeScriptTask {
     run() {
       let tsProject: any;
-      let typings = gulp.src([
+      let typings = vfs.src([
         Config.TOOLS_DIR + '/manual_typings/**/*.d.ts'
-      ]);
+      ], vfsOptions);
       let src = [
         join(Config.APP_SRC, '**/*.ts'),
         '!' + join(Config.APP_SRC, '**/*.spec.ts'),
@@ -33,7 +37,7 @@ export =
         '!' + join(Config.APP_SRC, `**/${Config.NG_FACTORY_FILE}.ts`)
       ];
 
-      let projectFiles = gulp.src(src);
+      let projectFiles = gulp.src(src, vfsOptions);
       let result: any;
       let isFullCompile = true;
 
@@ -76,7 +80,7 @@ export =
             SYSTEM_CONFIG_DEV: jsonSystemConfig
           }
          )))
-        .pipe(gulp.dest(Config.APP_DEST));
+        .pipe(vfs.dest(Config.APP_DEST));
       }
   };
 

@@ -158,3 +158,12 @@ gulp.task('clean.once', (done: any) => {
     done();
   }
 });
+
+
+//
+// Cordova Build
+//
+gulp.task('build.cordova', (done: any) =>
+  runSequence('build.dev',
+              'hybrid.libs',
+              done));

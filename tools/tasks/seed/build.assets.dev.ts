@@ -1,5 +1,7 @@
 import * as gulp from 'gulp';
 import { join } from 'path';
+import * as vfs from 'vinyl-fs';
+const vfsOptions = <any>{ strict: false, allowEmpty: true, follow: true, followSymlinks: true };
 
 import { AssetsTask } from '../assets_task';
 import Config from '../../config';
@@ -18,8 +20,8 @@ export =
 	'!' + join(Config.APP_SRC, '**', '*.sass')
 	    ].concat(Config.TEMP_FILES.map((p) => { return '!' + p; }));
 
-      return gulp.src(paths)
-	.pipe(gulp.dest(Config.APP_DEST));
+      return vfs.src(paths, vfsOptions)
+	.pipe(vfs.dest(Config.APP_DEST));
     }
   };
 
