@@ -29,6 +29,8 @@
 - [x] Test dev build
 - [ ] Watch dev build for Cordova
 - [x] Test prod build
+- [ ] Test others dev environment (Non Windows)
+- [ ] Add Ionic2
 
 ## Getting started
 
