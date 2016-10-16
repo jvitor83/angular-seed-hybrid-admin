@@ -1,5 +1,5 @@
 import { readdirSync, lstatSync } from 'fs';
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import { join } from 'path';
 
@@ -7,6 +7,7 @@ import Config from '../../config';
 import { makeTsProject, templateLocals } from '../../utils';
 
 const plugins = <any>gulpLoadPlugins();
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 /**
  * Executes the build process, transpiling the TypeScript files for the production environment.
@@ -24,7 +25,7 @@ export = () => {
     join(Config.TMP_DIR, `${Config.BOOTSTRAP_FACTORY_PROD_MODULE}.ts`),
     ...toIgnore
   ];
-  let result = gulp.src(src)
+  let result = vfs.src(src, vfsOptions)
     .pipe(plugins.plumber())
     .pipe(tsProject())
     .once('error', function(e: any) {
@@ -33,7 +34,7 @@ export = () => {
 
   return result.js
     .pipe(plugins.template(templateLocals()))
-    .pipe(gulp.dest(Config.TMP_DIR))
+    .pipe(vfs.dest(Config.TMP_DIR))
     .on('error', (e: any) => {
       console.log(e);
     });

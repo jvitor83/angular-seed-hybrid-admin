@@ -1,10 +1,11 @@
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import { join } from 'path';
 
 import Config from '../../config';
 
 const plugins = <any>gulpLoadPlugins();
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 /**
  * Executes the build process, linting the TypeScript files using `codelyzer`.
@@ -17,7 +18,7 @@ export = () => {
     '!' + join(Config.TOOLS_DIR, '**/*.d.ts')
   ];
 
-  return gulp.src(src)
+  return vfs.src(src, vfsOptions)
     .pipe(plugins.tslint())
     .pipe(plugins.tslint.report({
       emitError: require('is-ci')

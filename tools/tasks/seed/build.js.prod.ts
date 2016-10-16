@@ -1,4 +1,4 @@
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import { join } from 'path';
 
@@ -6,6 +6,7 @@ import Config from '../../config';
 import { makeTsProject, templateLocals } from '../../utils';
 
 const plugins = <any>gulpLoadPlugins();
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 const INLINE_OPTIONS = {
   base: Config.TMP_DIR,
@@ -24,7 +25,7 @@ export = () => {
     join(Config.TMP_DIR, '**/*.ts'),
     '!' + join(Config.TMP_DIR, `**/${Config.NG_FACTORY_FILE}.ts`)
   ];
-  let result = gulp.src(src)
+  let result = vfs.src(src, vfsOptions)
     .pipe(plugins.plumber())
     .pipe(plugins.inlineNg2Template(INLINE_OPTIONS))
     .pipe(tsProject())
@@ -35,7 +36,7 @@ export = () => {
 
   return result.js
     .pipe(plugins.template(templateLocals()))
-    .pipe(gulp.dest(Config.TMP_DIR))
+    .pipe(vfs.dest(Config.TMP_DIR))
     .on('error', (e: any) => {
       console.log(e);
     });

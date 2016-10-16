@@ -224,13 +224,13 @@ export class SeedConfig {
    * The folder for built files in the `dev` environment.
    * @type {string}
    */
-  DEV_DEST = `${this.DIST_DIR}/` + (argv['dev_dest'] || `dev`);
+  DEV_DEST = `${this.DIST_DIR}/` + (argv['dev-dest'] || `dev`);
 
   /**
    * The folder for the built files in the `prod` environment.
    * @type {string}
    */
-  PROD_DEST = `${this.DIST_DIR}/` + (argv['prod_dest'] || `prod`);
+  PROD_DEST = `${this.DIST_DIR}/` + (argv['prod-dest'] || `prod`);
 
   /**
    * The folder for temporary files.
@@ -519,6 +519,18 @@ export class SeedConfig {
       options: {
         rebaseUrls: false
       }
+    },
+
+    /**
+     * The options to pass to vinyl-fs
+     * Reference: https://github.com/gulpjs/vinyl-fs
+     * @type {object}
+     */
+    'vinyl-fs': {
+      strict: false,
+      allowEmpty: true,
+      follow: true,
+      followSymlinks: true
     }
   };
 
@@ -566,8 +578,17 @@ export class SeedConfig {
  * SystemJS Builder cannot bundle the target app on Windows.
  */
 function prepareBuilderConfig(config: any, srcPath: string, tmpPath: string) {
-  readdirSync(srcPath).filter(f =>
-    lstatSync(join(srcPath, f)).isDirectory()).forEach(f =>
+  readdirSync(srcPath).filter(f => {
+    let path = join(srcPath, f);
+    let statPath = lstatSync(path);
+    let isDirectory = statPath.isDirectory();
+    if (statPath.isSymbolicLink()) {
+      let symLinkPath = require('fs').readlinkSync(path);
+      let statPath = lstatSync(symLinkPath);
+      isDirectory = statPath.isDirectory();
+    }
+    return isDirectory;
+  }).forEach(f =>
     config.paths[join(tmpPath, f, '*')] = `${tmpPath}/${f}/*`);
   return config;
 }

@@ -1,13 +1,10 @@
 import * as autoprefixer from 'autoprefixer';
 import * as cssnano from 'cssnano';
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 import * as util from 'gulp-util';
 import { join } from 'path';
-
-import * as vfs from 'vinyl-fs';
-const vfsOptions = <any>{ strict: false, allowEmpty: true, follow: true, followSymlinks: true };
 
 import Config from '../../config';
 import { CssTask } from '../css_task';
@@ -15,6 +12,7 @@ import { CssTask } from '../css_task';
 const plugins = <any>gulpLoadPlugins();
 const cleanCss = require('gulp-clean-css');
 const gulpConcatCssConfig = Config.getPluginConfig('gulp-concat-css');
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 const processors = [
   autoprefixer({

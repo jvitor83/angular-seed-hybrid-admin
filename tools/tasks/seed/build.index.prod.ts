@@ -1,4 +1,4 @@
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import { join, sep, normalize } from 'path';
 import * as slash from 'slash';
@@ -7,17 +7,18 @@ import Config from '../../config';
 import { templateLocals } from '../../utils';
 
 const plugins = <any>gulpLoadPlugins();
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 /**
  * Executes the build process, injecting the JavaScript and CSS dependencies into the `index.html` for the production
  * environment.
  */
 export = () => {
-  return gulp.src(join(Config.APP_SRC, 'index.html'))
+  return vfs.src(join(Config.APP_SRC, 'index.html'), vfsOptions)
     .pipe(injectJs())
     .pipe(injectCss())
     .pipe(plugins.template(templateLocals()))
-    .pipe(gulp.dest(Config.APP_DEST));
+    .pipe(vfs.dest(Config.APP_DEST));
 };
 
 /**
@@ -25,7 +26,7 @@ export = () => {
  * @param {Array<string>} files - The files to be injected.
  */
 function inject(...files: Array<string>) {
-    return plugins.inject(gulp.src(files, { read: false }), {
+    return plugins.inject(vfs.src(files, (vfsOptions.read = false)), {
         files,
         transform: transformPath()
     });
@@ -51,7 +52,7 @@ function injectCss() {
  */
 function transformPath() {
   return function(filepath: string) {
-    let path: Array<string> = normalize(filepath).split(sep);
+    let path: Array<string> = normalize(filepath).split(sep).filter(path => path !== '');;
     let slice_after = path.indexOf(Config.APP_DEST);
     if (slice_after>-1) {
       slice_after++;

@@ -18,11 +18,28 @@
 - Hybrid Mobile (Cordova)
 - Desktop (Cordova)
 
+## TODOs
+
+- [x] Test Android (Cordova)
+- [ ] Test iOS (Cordova)
+- [ ] Test Windows (Cordova)
+- [ ] Test OSx (Cordova)
+- [ ] Test Ubuntu (Cordova)
+- [ ] Test Browser?!? (Cordova)
+- [x] Test dev build
+- [ ] Watch dev build for Cordova
+- [x] Test prod build
+- [ ] Test others dev environment (Non Windows)
+- [ ] Add Ionic2
+
 ## Getting started
 
 ```bash
-git clone --depth 1 https://github.com/jvitor83/angular-seed-hybrid
+git clone https://github.com/jvitor83/angular-seed-hybrid
 cd angular-seed-hybrid
+
+# install cordova globally
+npm install -g cordova
 
 # install the project's dependencies
 npm install
@@ -45,14 +62,34 @@ npm run build.prod
 #### Android
 > [http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html](http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html)
 
+##### Requirements
 ```bash
+# Go to the cordova directory
+cd src/cordova
+# Install the platform
+cordova platform add android --save
+```
+
+##### Starting
+```bash
+# At root directory
 npm start.android
 ```
 
 #### iOS _(Not tested)_
 > [http://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html](http://cordova.apache.org/docs/en/latest/guide/platforms/ios/index.html)
 
+##### Requirements
 ```bash
+# Go to the cordova directory
+cd src/cordova
+# Install the platform
+cordova platform add ios --save
+```
+
+##### Starting
+```bash
+# At root directory
 npm start.ios
 ```
 
@@ -61,7 +98,17 @@ npm start.ios
 #### Windows _(Not tested)_
 > [http://cordova.apache.org/docs/en/latest/guide/platforms/win8/index.html](http://cordova.apache.org/docs/en/latest/guide/platforms/win8/index.html)
 
+##### Requirements
 ```bash
+# Go to the cordova directory
+cd src/cordova
+# Install the platform
+cordova platform add windows --save
+```
+
+##### Starting
+```bash
+# At root directory
 npm start.windows
 ```
 
@@ -70,14 +117,34 @@ npm start.windows
 #### OS X _(Not tested)_
 > [http://cordova.apache.org/docs/en/latest/guide/platforms/osx/index.html](http://cordova.apache.org/docs/en/latest/guide/platforms/osx/index.html)
 
+##### Requirements
 ```bash
+# Go to the cordova directory
+cd src/cordova
+# Install the platform
+cordova platform add osx --save
+```
+
+##### Starting
+```bash
+# At root directory
 npm start.osx
 ```
 
 #### Linux (Ubuntu) _(Not tested)_
 > [http://cordova.apache.org/docs/en/latest/guide/platforms/ubuntu/index.html](http://cordova.apache.org/docs/en/latest/guide/platforms/ubuntu/index.html)
 
+##### Requirements
 ```bash
+# Go to the cordova directory
+cd src/cordova
+# Install the platform
+cordova platform add ubuntu --save
+```
+
+##### Starting
+```bash
+# At root directory
 npm start.linux
 ```
 

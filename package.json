@@ -1,6 +1,6 @@
 {
   "name": "angular-seed-hybrid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Angular 2 Seed Hybrid (Web + Cordova) = Browser/Desktop/Mobile",
   "repository": {
     "url": "https://github.com/jvitor83/angular-seed-hybrid"
@@ -29,12 +29,13 @@
     "serve.prod": "gulp serve.prod --color --config-env prod",
     "start": "gulp serve.dev --color",
     "start.deving": "gulp start.deving --color",
-    "build.cordova": "gulp build.cordova --src cordova --client app --app app --dist cordova --dev_dest www --base=./",
-    "start.windows": "npm run build.cordova && cd cordova && npm i && cordova run windows",
-    "start.linux": "npm run build.cordova && cd cordova && npm i && cordova run --device",
-    "start.ios": "npm run build.cordova && cd cordova && npm i && cordova run ios",
-    "start.osx": "npm run build.cordova && cd cordova && npm i && cordova run",
-    "start.android": "npm run build.cordova && cd cordova && npm i && cordova run android",
+    "build.dev.cordova": "gulp build.cordova --client cordova/app --dist src/cordova --dev-dest www --base=./",
+    "build.prod.cordova": "npm run build.prod -- --client cordova/app --dist src/cordova --prod-dest www --base=./",
+    "start.windows": "npm run build.dev.cordova && cd src/cordova && npm i && cordova run windows",
+    "start.linux": "npm run build.dev.cordova && cd src/cordova && npm i && cordova run --device",
+    "start.ios": "npm run build.dev.cordova && cd src/cordova && npm i && cordova run ios",
+    "start.osx": "npm run build.dev.cordova && cd src/cordova && npm i && cordova run",
+    "start.android": "npm run build.dev.cordova && cd src/cordova && npm i && cordova run android",
     "tasks.list": "gulp --tasks-simple --color",
     "test": "gulp test --color",
     "e2e.ci": "gulp build.prod --color && gulp build.js.e2e --color && gulp e2e --color",
@@ -44,8 +45,12 @@
   },
   "author": "João Vitor Paes de Barros do Carmo <jvitor83>",
   "contributors": [
-    { "name": "Minko Gechev <mgechev>" },
-    { "name": "Nathan Walker <NathanWalker>" }
+    {
+      "name": "Minko Gechev <mgechev>"
+    },
+    {
+      "name": "Nathan Walker <NathanWalker>"
+    }
   ],
   "license": "MIT",
   "devDependencies": {
@@ -59,6 +64,7 @@
     "@types/express": "^4.0.32",
     "@types/gulp": "^3.8.31",
     "@types/gulp-load-plugins": "^0.0.27",
+    "@types/gulp-newer": "0.0.29",
     "@types/gulp-protractor": "^1.0.28",
     "@types/gulp-sass": "^0.0.28",
     "@types/gulp-shell": "^0.0.28",
@@ -70,6 +76,7 @@
     "@types/run-sequence": "^0.0.27",
     "@types/selenium-webdriver": "2.44.*",
     "@types/systemjs": "^0.19.30",
+    "@types/vinyl-fs": "0.0.28",
     "@types/yargs": "^0.0.30",
     "@types/zone.js": "^0.0.26",
     "async": "^2.0.1",
