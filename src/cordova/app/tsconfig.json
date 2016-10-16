@@ -7,7 +7,6 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": ["es6", "es2015", "dom"],
     "sourceMap": true,
     "pretty": true,
     "allowUnreachableCode": false,
@@ -17,11 +16,16 @@
     "noImplicitUseStrict": false,
     "noFallthroughCasesInSwitch": true,
     "typeRoots": [
-      "./node_modules/@types",
-      "./node_modules"
+      "../../node_modules/@types",
+      "../../node_modules"
     ],
     "types": [
-      "node"
+      "core-js",
+      "express",
+      "jasmine",
+      "node",
+      "protractor",
+      "systemjs"
     ]
   },
   "exclude": [

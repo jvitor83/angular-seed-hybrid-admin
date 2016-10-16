@@ -1,7 +1,8 @@
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import { join } from 'path';
 
 import Config from '../../config';
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 // TODO There should be more elegant to prevent empty directories from copying
 var onlyDirs = function (es: any) {
@@ -20,7 +21,7 @@ var onlyDirs = function (es: any) {
  */
 export = () => {
   let es: any = require('event-stream');
-  return gulp.src([
+  return vfs.src([
     join(Config.APP_SRC, '**'),
     '!' + join(Config.APP_SRC, 'tsconfig.json'),
     '!' + join(Config.APP_SRC, '**', '*.ts'),
@@ -29,7 +30,7 @@ export = () => {
     '!' + join(Config.APP_SRC, '**', '*.scss'),
     '!' + join(Config.APP_SRC, '**', '*.sass'),
     '!' + join(Config.ASSETS_SRC, '**', '*.js')
-  ].concat(Config.TEMP_FILES.map((p) => { return '!' + p; })))
+  ].concat(Config.TEMP_FILES.map((p) => { return '!' + p; })), vfsOptions)
     .pipe(onlyDirs(es))
-    .pipe(gulp.dest(Config.APP_DEST));
+    .pipe(vfs.dest(Config.APP_DEST));
 };

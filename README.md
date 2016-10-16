@@ -18,6 +18,18 @@
 - Hybrid Mobile (Cordova)
 - Desktop (Cordova)
 
+## TODOs
+
+- [x] Test Android (Cordova)
+- [ ] Test iOS (Cordova)
+- [ ] Test Windows (Cordova)
+- [ ] Test OSx (Cordova)
+- [ ] Test Ubuntu (Cordova)
+- [ ] Test Browser?!? (Cordova)
+- [x] Test dev build
+- [ ] Watch dev build for Cordova
+- [x] Test prod build
+
 ## Getting started
 
 ```bash

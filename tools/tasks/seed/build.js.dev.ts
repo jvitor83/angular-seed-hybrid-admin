@@ -1,17 +1,13 @@
-
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 import * as util from 'gulp-util';
 import { join/*, sep, relative*/ } from 'path';
 
-import * as vfs from 'vinyl-fs';
-const vfsOptions = <any>{ strict: false, allowEmpty: true, follow: true, followSymlinks: true };
-
-
 import Config from '../../config';
 import { makeTsProject, templateLocals } from '../../utils';
 import { TypeScriptTask } from '../typescript_task';
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 const plugins = <any>gulpLoadPlugins();
 
@@ -37,7 +33,7 @@ export =
         '!' + join(Config.APP_SRC, `**/${Config.NG_FACTORY_FILE}.ts`)
       ];
 
-      let projectFiles = gulp.src(src, vfsOptions);
+      let projectFiles = vfs.src(src, vfsOptions);
       let result: any;
       let isFullCompile = true;
 

@@ -1,8 +1,11 @@
 import * as express from 'express';
 import * as history from 'express-history-api-fallback';
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import { resolve } from 'path';
 import { protractor } from 'gulp-protractor';
+
+import Config from '../../config';
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 class Protractor {
   server(port: number, dir: string) {
@@ -25,8 +28,8 @@ export = (done: any) => {
   new Protractor()
     .server(5555, './dist/prod')
     .then((server: any) => {
-      gulp
-        .src('./dist/dev/**/*.e2e-spec.js')
+      vfs
+        .src('./dist/dev/**/*.e2e-spec.js', vfsOptions)
         .pipe(protractor({ configFile: 'protractor.conf.js' }))
         .on('error', (error: string) => { throw error; })
         .on('end', () => { server.close(done); });

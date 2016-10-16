@@ -1,19 +1,20 @@
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 import { join } from 'path';
 
 import Config from '../../config';
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 const plugins = <any>gulpLoadPlugins();
 
 const getTask = (target: string, destDir: string) => {
-  return gulp.src(join(destDir, target))
+  return vfs.src(join(destDir, target), vfsOptions)
     .pipe(plugins.uglify({
       compress: true,
       mangle: true
     }))
-    .pipe(gulp.dest(destDir));
+    .pipe(vfs.dest(destDir));
 };
 
 export = () => {

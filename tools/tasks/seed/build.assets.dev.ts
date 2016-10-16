@@ -1,10 +1,9 @@
-import * as gulp from 'gulp';
-import { join } from 'path';
 import * as vfs from 'vinyl-fs';
-const vfsOptions = <any>{ strict: false, allowEmpty: true, follow: true, followSymlinks: true };
+import { join } from 'path';
 
 import { AssetsTask } from '../assets_task';
 import Config from '../../config';
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 /**
  * Executes the build process, copying the assets located in `src/client` over to the appropriate

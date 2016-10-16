@@ -1,4 +1,4 @@
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import { join } from 'path';
 
@@ -7,6 +7,7 @@ import { makeTsProject, templateLocals } from '../../utils';
 
 const plugins = <any>gulpLoadPlugins();
 const jsonSystemConfig = JSON.stringify(Config.SYSTEM_CONFIG_DEV);
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 /**
  * Executes the build process, transpiling the TypeScript files (including the e2e-spec files, excluding the spec files)
@@ -20,7 +21,7 @@ export = () => {
     '!' + join(Config.APP_SRC, '**/*.spec.ts'),
     '!' + join(Config.APP_SRC, `**/${Config.NG_FACTORY_FILE}.ts`)
   ];
-  let result = gulp.src(src)
+  let result = vfs.src(src, vfsOptions)
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(tsProject());
@@ -30,5 +31,5 @@ export = () => {
     .pipe(plugins.template(Object.assign(templateLocals(), {
       SYSTEM_CONFIG_DEV: jsonSystemConfig
     })))
-    .pipe(gulp.dest(Config.APP_DEST));
+    .pipe(vfs.dest(Config.APP_DEST));
 };

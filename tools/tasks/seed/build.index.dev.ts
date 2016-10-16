@@ -1,4 +1,4 @@
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import { join } from 'path';
 import * as slash from 'slash';
@@ -7,18 +7,18 @@ import Config from '../../config';
 import { templateLocals } from '../../utils';
 
 const plugins = <any>gulpLoadPlugins();
-
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 /**
  * Executes the build process, injecting the shims and libs into the `index.hml` for the development environment.
  */
 export = () => {
-  return gulp.src(join(Config.APP_SRC, 'index.html'))
+  return vfs.src(join(Config.APP_SRC, 'index.html'), vfsOptions)
     .pipe(inject('shims'))
     .pipe(inject('libs'))
     .pipe(inject())
     .pipe(plugins.template(templateLocals()))
-    .pipe(gulp.dest(Config.APP_DEST));
+    .pipe(vfs.dest(Config.APP_DEST));
 };
 
 /**
@@ -26,7 +26,7 @@ export = () => {
  * @param {string} name - The file to be injected.
  */
 function inject(name?: string) {
-  return plugins.inject(gulp.src(getInjectablesDependenciesRef(name), { read: false }), {
+  return plugins.inject(vfs.src(getInjectablesDependenciesRef(name), (vfsOptions.read = false)), {
     name,
     transform: transformPath()
   });

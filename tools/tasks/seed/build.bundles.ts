@@ -1,10 +1,11 @@
-import * as gulp from 'gulp';
+import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 
 import Config from '../../config';
 
 const plugins = <any>gulpLoadPlugins();
+const vfsOptions = Config.getPluginConfig('vinyl-fs');
 
 /**
  * Executes the build process, bundling the shim files.
@@ -28,9 +29,9 @@ function getShims() {
  * Bundles the shim files.
  */
 function bundleShims() {
-  return gulp.src(getShims())
+  return vfs.src(getShims(), vfsOptions)
     .pipe(plugins.concat(Config.JS_PROD_SHIMS_BUNDLE))
     // Strip the first (global) 'use strict' added by reflect-metadata, but don't strip any others to avoid unintended scope leaks.
     .pipe(plugins.replace(/('|")use strict\1;var Reflect;/, 'var Reflect;'))
-    .pipe(gulp.dest(Config.JS_DEST));
+    .pipe(vfs.dest(Config.JS_DEST));
 }
