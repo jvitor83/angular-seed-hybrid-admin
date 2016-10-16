@@ -52,5 +52,12 @@ gulpfile.js.map
 .DS_Store
 src/client/app/shared/config/env.config.js
 src/client/app/shared/config/env.config.js.map
-platforms
-www
+
+# Cordova
+cordova/platforms
+cordova/www
+cordova/node_modules
+cordova/hooks
+cordova/plugins
+cordova/app/app
+cordova/app/assets
