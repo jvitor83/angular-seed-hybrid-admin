@@ -1,6 +1,6 @@
 {
   "name": "angular-seed-hybrid",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular 2 Seed Hybrid (Web + Cordova) = Browser/Desktop/Mobile",
   "repository": {
     "url": "https://github.com/jvitor83/angular-seed-hybrid"
@@ -21,7 +21,7 @@
     "lint": "gulp tslint",
     "karma": "karma",
     "karma.start": "karma start",
-    "postinstall": "gulp check.versions && gulp build.bundle.rxjs && npm prune && gulp webdriver && node tools/install.js",
+    "postinstall": "gulp check.versions && gulp build.bundle.rxjs && npm prune && gulp webdriver && cd src/cordova && npm i && cd ../.. && node tools/install.js",
     "reinstall": "npm cache clean && npm install",
     "serve.coverage": "remap-istanbul -b src/ -i coverage/coverage-final.json -o coverage -t html && npm run gulp -- serve.coverage --color",
     "serve.dev": "gulp serve.dev --color --config-env dev",
