@@ -1,4 +1,3 @@
-import { readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
 import * as slash from 'slash';
 import { argv } from 'yargs';
@@ -342,11 +341,6 @@ export class SeedConfig {
    */
   SYSTEM_CONFIG_DEV: any = {
     defaultJSExtensions: true,
-    packageConfigPaths: [
-      `/node_modules/*/package.json`,
-      `/node_modules/**/package.json`,
-      `/node_modules/@angular/*/package.json`
-    ],
     paths: {
       [this.BOOTSTRAP_MODULE]: `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`,
       '@angular/common': 'node_modules/@angular/common/bundles/common.umd.js',
@@ -388,14 +382,18 @@ export class SeedConfig {
    * The system builder configuration of the application.
    * @type {any}
    */
-  SYSTEM_BUILDER_CONFIG: any = prepareBuilderConfig({
+  SYSTEM_BUILDER_CONFIG: any = {
     defaultJSExtensions: true,
     base: this.PROJECT_ROOT,
     packageConfigPaths: [
-      join('node_modules', '*', 'package.json'),
-      join('node_modules', '@angular', '*', 'package.json')
+      slash(join('node_modules', '*', 'package.json')),
+      slash(join('node_modules', '@angular', '*', 'package.json'))
     ],
     paths: {
+      // Note that for multiple apps this configuration need to be updated
+      // You will have to include entries for each individual application in
+      // `src/client`.
+      [slash(join(this.TMP_DIR, this.BOOTSTRAP_DIR, '*'))]: `${this.TMP_DIR}/${this.BOOTSTRAP_DIR}/*`,
       'node_modules/*': 'node_modules/*',
       '*': 'node_modules/*'
     },
@@ -441,7 +439,7 @@ export class SeedConfig {
         defaultExtension: 'js'
       }
     }
-  }, join(this.PROJECT_ROOT, this.APP_SRC), this.TMP_DIR);
+  };
 
   /**
    * The Autoprefixer configuration for the application.
@@ -570,27 +568,6 @@ export class SeedConfig {
     }
   }
 
-}
-
-/**
- * Used only when developing multiple applications with shared codebase.
- * We need to specify the paths for each individual application otherwise
- * SystemJS Builder cannot bundle the target app on Windows.
- */
-function prepareBuilderConfig(config: any, srcPath: string, tmpPath: string) {
-  readdirSync(srcPath).filter(f => {
-    let path = join(srcPath, f);
-    let statPath = lstatSync(path);
-    let isDirectory = statPath.isDirectory();
-    if (statPath.isSymbolicLink()) {
-      let symLinkPath = require('fs').readlinkSync(path);
-      let statPath = lstatSync(symLinkPath);
-      isDirectory = statPath.isDirectory();
-    }
-    return isDirectory;
-  }).forEach(f =>
-    config.paths[join(tmpPath, f, '*')] = `${tmpPath}/${f}/*`);
-  return config;
 }
 
 /**

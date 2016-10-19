@@ -1,5 +1,6 @@
 import * as vfs from 'vinyl-fs';
 import { join } from 'path';
+import * as slash from 'slash';
 
 import Config from '../../config';
 const vfsOptions = Config.getPluginConfig('vinyl-fs');
@@ -22,14 +23,14 @@ var onlyDirs = function (es: any) {
 export = () => {
   let es: any = require('event-stream');
   return vfs.src([
-    join(Config.APP_SRC, '**'),
-    '!' + join(Config.APP_SRC, 'tsconfig.json'),
-    '!' + join(Config.APP_SRC, '**', '*.ts'),
-    '!' + join(Config.APP_SRC, '**', '*.css'),
-    '!' + join(Config.APP_SRC, '**', '*.html'),
-    '!' + join(Config.APP_SRC, '**', '*.scss'),
-    '!' + join(Config.APP_SRC, '**', '*.sass'),
-    '!' + join(Config.ASSETS_SRC, '**', '*.js')
+    slash(join(Config.APP_SRC, '**')),
+    '!' + slash(join(Config.APP_SRC, 'tsconfig.json')),
+    '!' + slash(join(Config.APP_SRC, '**', '*.ts')),
+    '!' + slash(join(Config.APP_SRC, '**', '*.css')),
+    '!' + slash(join(Config.APP_SRC, '**', '*.html')),
+    '!' + slash(join(Config.APP_SRC, '**', '*.scss')),
+    '!' + slash(join(Config.APP_SRC, '**', '*.sass')),
+    '!' + slash(join(Config.ASSETS_SRC, '**', '*.js'))
   ].concat(Config.TEMP_FILES.map((p) => { return '!' + p; })), vfsOptions)
     .pipe(onlyDirs(es))
     .pipe(vfs.dest(Config.APP_DEST));

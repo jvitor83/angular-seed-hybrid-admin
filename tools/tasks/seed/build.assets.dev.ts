@@ -1,5 +1,6 @@
 import * as vfs from 'vinyl-fs';
 import { join } from 'path';
+import * as slash from 'slash';
 
 import { AssetsTask } from '../assets_task';
 import Config from '../../config';
@@ -13,10 +14,10 @@ export =
   class BuildAssetsTask extends AssetsTask {
     run() {
       let paths: string[] = [
-	join(Config.APP_SRC, '**'),
-	'!' + join(Config.APP_SRC, '**', '*.ts'),
-	'!' + join(Config.APP_SRC, '**', '*.scss'),
-	'!' + join(Config.APP_SRC, '**', '*.sass')
+	slash(join(Config.APP_SRC, '**')),
+	'!' + slash(join(Config.APP_SRC, '**', '*.ts')),
+	'!' + slash(join(Config.APP_SRC, '**', '*.scss')),
+	'!' + slash(join(Config.APP_SRC, '**', '*.sass'))
 	    ].concat(Config.TEMP_FILES.map((p) => { return '!' + p; }));
 
       return vfs.src(paths, vfsOptions)

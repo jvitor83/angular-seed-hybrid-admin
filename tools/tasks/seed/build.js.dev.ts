@@ -3,6 +3,7 @@ import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 import * as util from 'gulp-util';
 import { join/*, sep, relative*/ } from 'path';
+import * as slash from 'slash';
 
 import Config from '../../config';
 import { makeTsProject, templateLocals } from '../../utils';
@@ -27,10 +28,10 @@ export =
         Config.TOOLS_DIR + '/manual_typings/**/*.d.ts'
       ], vfsOptions);
       let src = [
-        join(Config.APP_SRC, '**/*.ts'),
-        '!' + join(Config.APP_SRC, '**/*.spec.ts'),
-        '!' + join(Config.APP_SRC, '**/*.e2e-spec.ts'),
-        '!' + join(Config.APP_SRC, `**/${Config.NG_FACTORY_FILE}.ts`)
+        slash(join(Config.APP_SRC, '**/*.ts')),
+        '!' + slash(join(Config.APP_SRC, '**/*.spec.ts')),
+        '!' + slash(join(Config.APP_SRC, '**/*.e2e-spec.ts')),
+        '!' + slash(join(Config.APP_SRC, `**/${Config.NG_FACTORY_FILE}.ts`))
       ];
 
       let projectFiles = vfs.src(src, vfsOptions);
