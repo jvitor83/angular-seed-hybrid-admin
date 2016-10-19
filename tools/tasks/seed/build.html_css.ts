@@ -5,6 +5,7 @@ import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 import * as util from 'gulp-util';
 import { join } from 'path';
+import * as slash from 'slash';
 
 import Config from '../../config';
 import { CssTask } from '../css_task';
@@ -38,7 +39,7 @@ if (isProd) {
  * Copies all HTML files in `src/client` over to the `dist/tmp` directory.
  */
 function prepareTemplates() {
-  return vfs.src(join(Config.APP_SRC, '**', '*.html'), vfsOptions)
+  return vfs.src(slash(join(Config.APP_SRC, '**', '*.html')), vfsOptions)
     .pipe(vfs.dest(Config.TMP_DIR));
 }
 
@@ -53,7 +54,7 @@ function processComponentStylesheets() {
  * Process scss files referenced from Angular component `styleUrls` metadata
  */
 function processComponentScss() {
-  return vfs.src(join(Config.APP_SRC, '**', '*.scss'), vfsOptions)
+  return vfs.src(slash(join(Config.APP_SRC, '**', '*.scss')), vfsOptions)
     .pipe(isProd ? plugins.cached('process-component-scss') : plugins.util.noop())
     .pipe(isProd ? plugins.progeny() : plugins.util.noop())
     .pipe(plugins.sourcemaps.init())
@@ -70,8 +71,8 @@ function processComponentScss() {
  */
 function processComponentCss() {
   return vfs.src([
-    join(Config.APP_SRC, '**', '*.css'),
-    '!' + join(Config.APP_SRC, 'assets', '**', '*.css')
+    slash(join(Config.APP_SRC, '**', '*.css')),
+    '!' + slash(join(Config.APP_SRC, 'assets', '**', '*.css'))
   ], vfsOptions)
     .pipe(isProd ? plugins.cached('process-component-css') : plugins.util.noop())
     .pipe(plugins.postcss(processors))
@@ -129,7 +130,7 @@ function getExternalScssStream() {
  */
 function getExternalScss() {
   return Config.DEPENDENCIES.filter(dep => /\.scss$/.test(dep.src)).map(dep => dep.src)
-    .concat([join(Config.CSS_SRC, '**', '*.scss')]);
+    .concat([slash(join(Config.CSS_SRC, '**', '*.scss'))]);
 }
 
 /**

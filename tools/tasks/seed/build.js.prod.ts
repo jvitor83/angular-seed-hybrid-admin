@@ -22,7 +22,7 @@ const INLINE_OPTIONS = {
 export = () => {
   let tsProject = makeTsProject({}, Config.TMP_DIR);
   let src = [
-    Config.TOOLS_DIR + '/manual_typings/**/*.d.ts',
+    slash(join(Config.TOOLS_DIR, '/manual_typings/**/*.d.ts')),
     slash(join(Config.TMP_DIR, '**/*.ts')),
     '!' + slash(join(Config.TMP_DIR, `**/${Config.NG_FACTORY_FILE}.ts`))
   ];

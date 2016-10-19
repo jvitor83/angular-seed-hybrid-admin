@@ -1,5 +1,6 @@
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import { join } from 'path';
+import * as slash from 'slash';
 
 import Config from '../../config';
 
@@ -18,7 +19,7 @@ export function makeTsProject(options: Object = {}, pathToTsConfig: string = Con
       typescript: require('typescript')
     }, options);
     tsProjects[optionsHash] =
-      plugins.typescript.createProject(join(pathToTsConfig, 'tsconfig.json'), config);
+      plugins.typescript.createProject(slash(join(pathToTsConfig, 'tsconfig.json')), config);
   }
   return tsProjects[optionsHash];
 }
