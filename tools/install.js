@@ -128,12 +128,13 @@ function displayFinalHelp()
     console.log("------------------------- Angular Seed Hybrid is Now Ready ------------------------------");
     console.log("");
     console.log("Run your web app with:");
-    console.log("  npm start");
+    console.log("  Web: npm start");
+    console.log("  Browser (via cordova): npm run start.browser");
     console.log("");
-    console.log("Run your Mobile/Desktop app via cordova with:");
-    console.log("  iOS:     npm run start.ios");
-    console.log("  Android: npm run start.android");
+    console.log("Run your Mobile/Desktop app (via cordova) with:");
     console.log("  Windows: npm run start.windows");
+    console.log("  Android: npm run start.android");
+    console.log("  iOS:     npm run start.ios");
     console.log("");
     console.log("-----------------------------------------------------------------------------------------");
     console.log("");
