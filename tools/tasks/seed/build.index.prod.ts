@@ -1,6 +1,6 @@
 import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
-import { join, sep, normalize } from 'path';
+import { join, normalize } from 'path';
 import * as slash from 'slash';
 
 import Config from '../../config';
@@ -14,7 +14,7 @@ const vfsOptions = Config.getPluginConfig('vinyl-fs');
  * environment.
  */
 export = () => {
-  return vfs.src(join(Config.APP_SRC, 'index.html'), vfsOptions)
+  return vfs.src(slash(join(Config.APP_SRC, 'index.html')), vfsOptions)
     .pipe(injectJs())
     .pipe(injectCss())
     .pipe(plugins.template(templateLocals()))
@@ -36,14 +36,14 @@ function inject(...files: Array<string>) {
  * Injects the bundled JavaScript shims and application bundles for the production environment.
  */
 function injectJs() {
-  return inject(join(Config.JS_DEST, Config.JS_PROD_SHIMS_BUNDLE), join(Config.JS_DEST, Config.JS_PROD_APP_BUNDLE));
+  return inject(slash(join(Config.JS_DEST, Config.JS_PROD_SHIMS_BUNDLE)), slash(join(Config.JS_DEST, Config.JS_PROD_APP_BUNDLE)));
 }
 
 /**
  * Injects the bundled CSS files for the production environment.
  */
 function injectCss() {
-  return inject(join(Config.CSS_DEST, Config.CSS_PROD_BUNDLE));
+  return inject(slash(join(Config.CSS_DEST, Config.CSS_PROD_BUNDLE)));
 }
 
 /**
@@ -52,14 +52,10 @@ function injectCss() {
  */
 function transformPath() {
   return function(filepath: string) {
-    let path: Array<string> = normalize(filepath).split(sep).filter(path => path !== '');;
-    let slice_after = path.indexOf(Config.APP_DEST);
-    if (slice_after>-1) {
-      slice_after++;
-    } else {
-      slice_after = 3;
-    }
-    arguments[0] = Config.APP_BASE + path.slice(slice_after, path.length).join(sep) + `?${Date.now()}`;
+    let configAppNormalized = normalize(Config.APP_DEST).replace(/^\//,'').replace(/^\\/,'');
+    let filePathNormalized = normalize(filepath).replace(/^\//,'').replace(/^\\/,'');
+    let path = filePathNormalized.replace(configAppNormalized, '').replace(/^\//,'').replace(/^\\/,'');
+    arguments[0] = Config.APP_BASE + slash(path) + `?${Date.now()}`;
     return slash(plugins.inject.transform.apply(plugins.inject.transform, arguments));
   };
 }
