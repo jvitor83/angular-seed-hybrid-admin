@@ -386,14 +386,14 @@ export class SeedConfig {
     defaultJSExtensions: true,
     base: this.PROJECT_ROOT,
     packageConfigPaths: [
-      join('node_modules', '*', 'package.json'),
-      join('node_modules', '@angular', '*', 'package.json')
+      slash(join('node_modules', '*', 'package.json')),
+      slash(join('node_modules', '@angular', '*', 'package.json'))
     ],
     paths: {
       // Note that for multiple apps this configuration need to be updated
       // You will have to include entries for each individual application in
       // `src/client`.
-      [join(this.TMP_DIR, this.BOOTSTRAP_DIR, '*')]: `${this.TMP_DIR}/${this.BOOTSTRAP_DIR}/*`,
+      [slash(join(this.TMP_DIR, this.BOOTSTRAP_DIR, '*'))]: `${this.TMP_DIR}/${this.BOOTSTRAP_DIR}/*`,
       'node_modules/*': 'node_modules/*',
       '*': 'node_modules/*'
     },

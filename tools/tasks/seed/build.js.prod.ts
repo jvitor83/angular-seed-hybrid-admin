@@ -1,6 +1,7 @@
 import * as vfs from 'vinyl-fs';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import { join } from 'path';
+import * as slash from 'slash';
 
 import Config from '../../config';
 import { makeTsProject, templateLocals } from '../../utils';
@@ -22,8 +23,8 @@ export = () => {
   let tsProject = makeTsProject({}, Config.TMP_DIR);
   let src = [
     Config.TOOLS_DIR + '/manual_typings/**/*.d.ts',
-    join(Config.TMP_DIR, '**/*.ts'),
-    '!' + join(Config.TMP_DIR, `**/${Config.NG_FACTORY_FILE}.ts`)
+    slash(join(Config.TMP_DIR, '**/*.ts')),
+    '!' + slash(join(Config.TMP_DIR, `**/${Config.NG_FACTORY_FILE}.ts`))
   ];
   let result = vfs.src(src, vfsOptions)
     .pipe(plugins.plumber())
