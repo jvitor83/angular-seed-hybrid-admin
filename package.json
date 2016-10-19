@@ -75,6 +75,7 @@
     "@types/run-sequence": "^0.0.28",
     "@types/selenium-webdriver": "2.44.*",
     "@types/systemjs": "^0.19.31",
+    "@types/vinyl-fs": "^0.0.28",
     "@types/yargs": "^0.0.33",
     "@types/zone.js": "^0.0.27",
     "async": "^2.1.1",
