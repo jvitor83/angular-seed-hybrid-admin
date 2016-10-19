@@ -1,6 +1,6 @@
 # Angular(2) Seed Hybrid
 
-[![Join the chat at https://gitter.im/mgechev/angular2-seed](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-seed-hybrid/Lobby#?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/angular-seed-hybrid/Lobby](https://badges.gitter.im/angular-seed-hybrid/Lobby.svg)](https://gitter.im/angular-seed-hybrid/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![Dependency Status](https://david-dm.org/jvitor83/angular-seed-hybrid.svg)](https://david-dm.org/jvitor83/angular-seed-hybrid)
 [![devDependency Status](https://david-dm.org/jvitor83/angular-seed-hybrid/dev-status.svg)](https://david-dm.org/jvitor83/angular-seed-hybrid#info=devDependencies)
@@ -21,6 +21,7 @@
 
 ## TODOs
 
+- [x] Test Web
 - [x] Test Browser (Cordova)
 - [x] Test Windows (Cordova)
 - [x] Test Android (Cordova)
