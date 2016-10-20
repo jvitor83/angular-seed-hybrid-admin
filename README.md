@@ -34,6 +34,12 @@
 - [ ] Test others dev environment (Non Windows)
 - [ ] Add Ionic2
 
+## Sample
+
+With Template SB Admin
+[https://github.com/jvitor83/angular-seed-hybrid-admin](https://github.com/jvitor83/angular-seed-hybrid-admin)
+
+
 ## Getting started
 
 ```bash
