@@ -2,8 +2,8 @@
 
 [![Join the chat at https://gitter.im/angular-seed-hybrid/Lobby](https://badges.gitter.im/angular-seed-hybrid/Lobby.svg)](https://gitter.im/angular-seed-hybrid/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-[![Dependency Status](https://david-dm.org/jvitor83/angular-seed-hybrid.svg)](https://david-dm.org/jvitor83/angular-seed-hybrid-admin)
-[![devDependency Status](https://david-dm.org/jvitor83/angular-seed-hybrid/dev-status.svg)](https://david-dm.org/jvitor83/angular-seed-hybrid-admin#info=devDependencies)
+[![Dependency Status](https://david-dm.org/jvitor83/angular-seed-hybrid-admin.svg)](https://david-dm.org/jvitor83/angular-seed-hybrid-admin)
+[![devDependency Status](https://david-dm.org/jvitor83/angular-seed-hybrid-admin/dev-status.svg)](https://david-dm.org/jvitor83/angular-seed-hybrid-admin#info=devDependencies)
 
 ## Description
 
