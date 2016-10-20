@@ -194,7 +194,7 @@ export class SeedConfig {
    * The folder of the applications css files.
    * @type {string}
    */
-  CSS_SRC = `${this.APP_SRC}/css`;
+  CSS_SRC = `${this.APP_SRC}/assets/sass`;
 
   /**
    * The directory of the applications tools
