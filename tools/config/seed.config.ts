@@ -194,7 +194,7 @@ export class SeedConfig {
    * The folder of the applications css files.
    * @type {string}
    */
-  CSS_SRC = `${this.APP_SRC}/css`;
+  CSS_SRC = `${this.APP_SRC}/assets/sass`;
 
   /**
    * The directory of the applications tools
@@ -295,7 +295,7 @@ export class SeedConfig {
    * The default value is false. Override with the '--scss' flag.
    * @type {boolean}
    */
-  ENABLE_SCSS = argv['scss'] || false;
+  ENABLE_SCSS = argv['scss'] || true;
 
   /**
    * The list of NPM dependcies to be injected in the `index.html`.
@@ -341,6 +341,10 @@ export class SeedConfig {
    */
   SYSTEM_CONFIG_DEV: any = {
     defaultJSExtensions: true,
+    packageConfigPaths: [
+      slash(join('node_modules', '*', 'package.json')),
+      slash(join('node_modules', '@angular', '*', 'package.json'))
+    ],
     paths: {
       [this.BOOTSTRAP_MODULE]: `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`,
       '@angular/common': 'node_modules/@angular/common/bundles/common.umd.js',
@@ -365,6 +369,7 @@ export class SeedConfig {
       'app/*': '/app/*',
       // For test config
       'dist/dev/*': '/base/dist/dev/*',
+      'node_modules/*': 'node_modules/*',
       '*': 'node_modules/*'
     },
     packages: {

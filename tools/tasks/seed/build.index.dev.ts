@@ -26,7 +26,8 @@ export = () => {
  * @param {string} name - The file to be injected.
  */
 function inject(name?: string) {
-  return plugins.inject(vfs.src(getInjectablesDependenciesRef(name), (vfsOptions.read = false)), {
+  vfsOptions.read = false;
+  return plugins.inject(vfs.src(getInjectablesDependenciesRef(name), vfsOptions), {
     name,
     transform: transformPath()
   });
