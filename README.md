@@ -72,10 +72,7 @@ npm run build.prod
 
 ##### Requirements
 ```bash
-# Go to the cordova directory
-cd src/cordova
-# Install the platform
-cordova platform add android --save
+npm run install.android
 ```
 
 ##### Starting
@@ -89,10 +86,7 @@ npm start.android
 
 ##### Requirements
 ```bash
-# Go to the cordova directory
-cd src/cordova
-# Install the platform
-cordova platform add ios --save
+npm run install.ios
 ```
 
 ##### Starting
@@ -108,10 +102,7 @@ npm start.ios
 
 ##### Requirements
 ```bash
-# Go to the cordova directory
-cd src/cordova
-# Install the platform
-cordova platform add windows --save
+npm run install.windows
 ```
 
 ##### Starting
@@ -127,10 +118,7 @@ npm start.windows
 
 ##### Requirements
 ```bash
-# Go to the cordova directory
-cd src/cordova
-# Install the platform
-cordova platform add osx --save
+npm run install.osx
 ```
 
 ##### Starting
@@ -144,16 +132,13 @@ npm start.osx
 
 ##### Requirements
 ```bash
-# Go to the cordova directory
-cd src/cordova
-# Install the platform
-cordova platform add ubuntu --save
+npm run install.ubuntu
 ```
 
 ##### Starting
 ```bash
 # At root directory
-npm start.linux
+npm start.ubuntu
 ```
 
 
