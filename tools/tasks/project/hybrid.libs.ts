@@ -14,6 +14,8 @@ export = () => {
     'node_modules/ng2-translate/**/*',
     'node_modules/@ngrx/**/*',
     'node_modules/ng2-bootstrap/**/*',
+    '!node_modules/**/*.js.gz',
+    '!node_modules/**/*.js.map.gz',
     'node_modules/moment/**/*',
   ];
 
