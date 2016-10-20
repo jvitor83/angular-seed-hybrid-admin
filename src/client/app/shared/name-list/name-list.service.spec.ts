@@ -8,7 +8,7 @@ import { NameListService } from './name-list.service';
 export function main() {
   describe('NameList Service', () => {
     let nameListService: NameListService;
-    let mockBackend: MockBackend;
+    let backend: MockBackend;
     let initialResponse: any;
 
     beforeEach(() => {
@@ -25,10 +25,10 @@ export function main() {
         },
       ]);
       nameListService = injector.get(NameListService);
-      mockBackend = injector.get(MockBackend);
+      backend = injector.get(MockBackend);
 
       let connection: any;
-      mockBackend.connections.subscribe((c: any) => connection = c);
+      backend.connections.subscribe((c: any) => connection = c);
       initialResponse = nameListService.get();
       connection.mockRespond(new Response(new ResponseOptions({ body: '["Dijkstra", "Hopper"]' })));
     });

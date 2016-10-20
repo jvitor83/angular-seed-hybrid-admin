@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { Config } from './shared/index';
-import './operators';
 
 /**
  * This class represents the main application component. Within the @Routes annotation is the configuration of the
@@ -13,7 +12,10 @@ import './operators';
 })
 
 export class AppComponent {
-  constructor() {
-    console.log('Environment config', Config);
-  }
+	private viewContainerRef: ViewContainerRef;
+	public constructor(viewContainerRef:ViewContainerRef) {
+		// You need this small hack in order to catch application root view container ref
+		this.viewContainerRef = viewContainerRef;
+		console.log('Environment config', Config);
+	}
 }

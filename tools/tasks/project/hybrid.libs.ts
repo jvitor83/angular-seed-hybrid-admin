@@ -5,12 +5,7 @@ var newer = require('gulp-newer');
 
 export = () => {
   let src = [
-    'node_modules/@angular/**/*',
-    'node_modules/.tmp/**/*',
-    'node_modules/rxjs/**/*',
-    'node_modules/lodash/**/*',
-    'node_modules/ng2-translate/**/*',
-    'node_modules/@ngrx/**/*'
+    'node_modules/**/*'
   ];
 
   src.push(...Config.NPM_DEPENDENCIES.map(x => relative(Config.PROJECT_ROOT, x.src)));
