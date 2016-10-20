@@ -26,7 +26,8 @@ export = () => {
  * @param {Array<string>} files - The files to be injected.
  */
 function inject(...files: Array<string>) {
-    return plugins.inject(vfs.src(files, (vfsOptions.read = false)), {
+    vfsOptions.read = false;
+    return plugins.inject(vfs.src(files, vfsOptions), {
         files,
         transform: transformPath()
     });
