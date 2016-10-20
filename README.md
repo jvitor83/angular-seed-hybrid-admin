@@ -42,43 +42,51 @@ With Template SB Admin
 
 ## Getting started
 
+### Pre Requirements
+
+- **GIT**: Have installed or Install GIT: [https://git-scm.com/downloads](https://git-scm.com/downloads)
+- **NODE**: Have installed or Install NODE (5.XX): [https://nodejs.org/en/download/releases/](https://nodejs.org/en/download/releases/) 
+
+
+### Requirements
+
 ```bash
-git clone https://github.com/jvitor83/angular-seed-hybrid
-cd angular-seed-hybrid
+# Clone this repository
+git clone https://github.com/jvitor83/angular-seed-hybrid-admin
+cd angular-seed-hybrid-admin
 
-# install cordova globally
-npm install -g cordova
+# Install global dependencies
+npm install --global cordova typescript ts-node gulp browser-sync
 
-# install the project's dependencies
+# Install the project's dependencies
 npm install
 ```
 
 ### Web
 
 ```bash
-# watches your files and uses livereload by default
-npm start
-
-# dev build
-npm run build.dev
-# prod build
-npm run build.prod
+# Watches your files and uses livereload by default
+npm run start
 ```
 
 ### Mobile (Hybrid)
 
 #### Android
+
+##### Pre Requirements
+Install the tools/sdk reported in:
 > [http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html](http://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html)
 
 ##### Requirements
 ```bash
+# Install the platform
 npm run install.android
 ```
 
 ##### Starting
 ```bash
 # At root directory
-npm start.android
+npm run start.android
 ```
 
 #### iOS _(Not tested)_
@@ -86,29 +94,31 @@ npm start.android
 
 ##### Requirements
 ```bash
+# Install the platform
 npm run install.ios
 ```
 
 ##### Starting
 ```bash
 # At root directory
-npm start.ios
+npm run start.ios
 ```
 
 ### Desktop/Mobile
 
-#### Windows _(Not tested)_
+#### Windows
 > [http://cordova.apache.org/docs/en/latest/guide/platforms/win8/index.html](http://cordova.apache.org/docs/en/latest/guide/platforms/win8/index.html)
 
 ##### Requirements
 ```bash
+# Install the platform
 npm run install.windows
 ```
 
 ##### Starting
 ```bash
 # At root directory
-npm start.windows
+npm run start.windows
 ```
 
 ### Desktop
@@ -118,13 +128,14 @@ npm start.windows
 
 ##### Requirements
 ```bash
+# Install the platform
 npm run install.osx
 ```
 
 ##### Starting
 ```bash
 # At root directory
-npm start.osx
+npm run start.osx
 ```
 
 #### Linux (Ubuntu) _(Not tested)_
@@ -132,13 +143,14 @@ npm start.osx
 
 ##### Requirements
 ```bash
+# Install the platform
 npm run install.ubuntu
 ```
 
 ##### Starting
 ```bash
 # At root directory
-npm start.ubuntu
+npm run start.ubuntu
 ```
 
 

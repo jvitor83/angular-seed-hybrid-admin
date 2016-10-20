@@ -31,6 +31,7 @@
     "start.deving": "gulp start.deving --color",
     "build.dev.cordova": "gulp build.cordova --client cordova/app --dist src/cordova --dev-dest www --base=./",
     "build.prod.cordova": "npm run build.prod -- --client cordova/app --dist src/cordova --prod-dest www --base=./",
+    "build.prod.exp.cordova": "npm run build.prod -- --client cordova/app --dist src/cordova --prod-dest www --base=./",
     "cordova.serve": "npm run build.dev.cordova && cd src/cordova && cordova serve",
     "start.windows": "npm run build.dev.cordova && cd src/cordova && cordova run windows",
     "install.windows": "cd src/cordova && cordova platform rm windows && cordova platform add windows",
