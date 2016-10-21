@@ -14,6 +14,7 @@
     "build.test": "gulp build.test --color",
     "test.watch": "gulp test.watch --color",
     "generate.manifest": "gulp generate.manifest --color",
+    "clean": "rimraf -rf node_modules dist && cd src/cordova && rimraf -rf node_modules www temp && mkdir www",
     "e2e": "protractor",
     "e2e.live": "protractor --elementExplorer",
     "gulp": "gulp",
